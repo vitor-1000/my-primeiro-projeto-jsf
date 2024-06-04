@@ -14,7 +14,7 @@ import br.com.entidades.Cidades;
 @FacesConverter(forClass = Cidades.class, value = "cidadeConverter")
 public class CidadesConverter implements Converter, Serializable{
 
-	private static final long serialVersionUID = 7942337638899772351L; //esta funcionando!
+	private static final long serialVersionUID = 7942337638899772351L; 
 	
 
 @Override
