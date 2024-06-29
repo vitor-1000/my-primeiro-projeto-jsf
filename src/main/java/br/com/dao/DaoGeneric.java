@@ -83,4 +83,15 @@ public class DaoGeneric<E> implements Serializable {
 		return retorno;
 	}
 	
+	public E consultar(Class<E> entidade, String codigo) {
+		
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		entityTransaction.begin();
+		
+		E objeto = (E) entityManager.find(entidade, Long.parseLong(codigo));
+		entityTransaction.commit();
+		return objeto;
+		
+	}
+	
 }
