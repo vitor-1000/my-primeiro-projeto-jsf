@@ -161,20 +161,15 @@
 			<f:selectItems value="#{pessoaBean.cidades}"/>
 		</h:selectOneMenu>
 						
-		<h:outputLabel/>
-		<h:panelGroup>
-		     <h:commandButton value="Novo" id="botaoNovo" action="#{pessoaBean.novo}" image="/resources/img/novo.png" title="Novo">
-		     	<f:ajax execute="botaoNovo" render="@form"/>
-		     </h:commandButton>
-		     
-		     <h:commandButton style="margin-left:1cm;" value="Salvar" action="#{pessoaBean.salvar}" image="/resources/img/salvar.png" title="Salvar"/>
-		     <h:commandButton style="margin-left:1cm;" value="Remove" action="#{pessoaBean.remove}" image="/resources/img/remove.png" title="Remove"  rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}"/>
-		     <h:commandButton style="margin-left:1cm;" id="botaoLimpar" value="Limpar" action="#{pessoaBean.limpar}" image="/resources/img/Limpar.png" title="Limpar">
-		     	<f:ajax execute="botaoLimpar" render="@form"/>
-		     </h:commandButton>
-		</h:panelGroup>
-		
-		</h:panelGrid>		
+		  <h:outputLabel/>
+	    <h:panelGroup>
+	    		<h:commandButton value="Novo" action="#{pessoaBean.novo}" image="resources/img/novo.png" title="Novo" immediate="true"/>
+			    <h:commandButton style="margin-left:1cm;" value="Salvar" action="#{pessoaBean.salvar}" image="/resources/img/salvar.png" title="Salvar" />
+			    <h:commandButton style="margin-left:1cm;" value="Remove" action="#{pessoaBean.remove}" image="/resources/img/remove.png" title="Remover"  rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}" immediate="true"/>
+			    <h:commandButton style="margin-left:1cm;" value="Limpar" type="reset" image="/resources/img/Limpar.png" title="Limpar" immediate="true"/>
+	    </h:panelGroup>
+	    
+	    </h:panelGrid> 	
 		
 		</h:form>
 		

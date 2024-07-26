@@ -72,41 +72,51 @@ public class PessoaBean implements Serializable {
 
 	public String salvar() throws IOException{
 		//Processar imagem.
+		byte[] imagemByte = null;
 		
-		byte[] imagemByte = getByte(arquivofoto.getInputStream());
-		pessoa.setFotoIconBase64original(imagemByte); //Salva a foto original.
+		if (arquivofoto != null) {
+			imagemByte = getByte(arquivofoto.getInputStream());
+		}
 		
-		//trasforma em bufferimage.
-		BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imagemByte));
-		
-		//Pega o tipo da imagem.
-		int type = bufferedImage.getType() == 0? BufferedImage.TYPE_INT_ARGB : bufferedImage.getType();
-		
-		int largura = 200;
-		int altura = 200;
-		
-		//Criar a miniatura.
-		BufferedImage resizedImage = new BufferedImage(largura, altura, type);
-		Graphics2D g = resizedImage.createGraphics();
-		g.drawImage(bufferedImage, 0, 0, largura, altura, null);
-		g.dispose();
-		
-		//Escrever novamente a imagem em tamanho menor.
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		String extensao = arquivofoto.getContentType().split("\\/")[1];  //imagem/png.
-		ImageIO.write(resizedImage, extensao, baos);
-		
-		String miniImagem = "data:" + arquivofoto.getContentType() + ";base64," +
-		                     DatatypeConverter.printBase64Binary(baos.toByteArray());
-		
-		//Processar imagem.
-		pessoa.setFotoIconBase64(miniImagem);
-		pessoa.setExtensao(extensao);
-		
+		if (imagemByte != null && imagemByte.length > 0) {
+			pessoa.setFotoIconBase64original(imagemByte); //Salva a foto original.
+			
+			//trasforma em bufferimage.
+			BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imagemByte));
+			
+			//Pega o tipo da imagem.
+			int type = bufferedImage.getType() == 0? BufferedImage.TYPE_INT_ARGB : bufferedImage.getType();
+			
+			int largura = 200;
+			int altura = 200;
+			
+			//Criar a miniatura.
+			BufferedImage resizedImage = new BufferedImage(largura, altura, type);
+			Graphics2D g = resizedImage.createGraphics();
+			g.drawImage(bufferedImage, 0, 0, largura, altura, null);
+			g.dispose();
+			
+			//Escrever novamente a imagem em tamanho menor.
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			String extensao = arquivofoto.getContentType().split("\\/")[1];  //imagem/png.
+			ImageIO.write(resizedImage, extensao, baos);
+			
+			String miniImagem = "data:" + arquivofoto.getContentType() + ";base64," +
+			                     DatatypeConverter.printBase64Binary(baos.toByteArray());
+			
+			//Processar imagem.
+			pessoa.setFotoIconBase64(miniImagem);
+			pessoa.setExtensao(extensao);
+		}
 		
 		pessoa = daoGeneric.merge(pessoa);
-		carregarPessoas();
-		mostrarMsg("Cadastrado com sucesso!");
+		
+		if (pessoa != null) {
+			carregarPessoas();
+			mostrarMsg("Cadastrado com sucesso!");
+		} else {
+			mostrarMsg("Não foi possível gravar.");
+		}
 		
 		return " ";
 	}
@@ -116,6 +126,8 @@ public class PessoaBean implements Serializable {
 		System.out.println("método registraLog");
 		/* Criar a rotina de gravação de log */
 	}
+	
+
 
 	private void mostrarMsg(String msg) {
 		FacesContext context = FacesContext.getCurrentInstance();

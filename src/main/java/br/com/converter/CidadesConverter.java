@@ -20,9 +20,10 @@ public class CidadesConverter implements Converter, Serializable{
 @Override
 public Object getAsObject(FacesContext context, UIComponent component, String codigoCidade) {
     EntityManager entityManager = CDI.current().select(EntityManager.class).get();
-                Cidades cidades = (Cidades) entityManager.find(Cidades.class,
-    		                      Long.parseLong(codigoCidade));
-        
+    Cidades cidades = null;
+    if (!codigoCidade.equals("--[Selecione]--")) {
+    	cidades = (Cidades) entityManager.find(Cidades.class, Long.parseLong(codigoCidade));
+    }
     return cidades;
     
 }

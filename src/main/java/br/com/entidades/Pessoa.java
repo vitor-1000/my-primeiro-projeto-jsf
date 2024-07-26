@@ -34,14 +34,14 @@ public class Pessoa implements Serializable {
 	private Long id;
 
 	@NotEmpty
-	@Size(min=10, max = 50, message = "Nome deve ter entre 10 e 50 letras")
+	@Size(min=5, max = 50, message = "Nome deve ter entre 5 e 50 letras")
 	private String nome;
 
 	@NotEmpty(message="Sobrenome deve ser informado")
 	@NotNull(message="Sobrenome deve ser informado")
 	private String sobrenome;
 
-	@DecimalMax(value="50", message = "Idade de ser menor que 50")
+	@DecimalMax(value="50", message = "Idade deve ser menor que 50")
 	@DecimalMin(value="10",message = "Idade deve ser maior que 10")
 	private Integer idade;
 

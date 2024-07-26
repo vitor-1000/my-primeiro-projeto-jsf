@@ -19,10 +19,10 @@ public class EstadoConverter implements Converter, Serializable{
 	@Override //Retorna o objeto inteiro
 	public Object getAsObject(FacesContext context, UIComponent component, String codigoEstado) {
 	    EntityManager entityManager = CDI.current().select(EntityManager.class).get();
-	    
-	   Estados estados = (Estados) entityManager.find(Estados.class,
-                Long.parseLong(codigoEstado));
-	    
+	    Estados estados = null;
+	    if (!codigoEstado.equals("--[Selecione]--")) {
+	    	estados = (Estados) entityManager.find(Estados.class, Long.parseLong(codigoEstado));
+	    }
 	    return estados;	
 	}
 
