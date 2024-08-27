@@ -15,8 +15,9 @@ import br.com.entidades.Lancamento;
 import br.com.entidades.Pessoa;
 import br.com.repository.IDaoLancamento;
 
+
 @javax.faces.view.ViewScoped
-@Named(value="lancementoBean")
+@Named(value="lancamentoBean")
 public class LancamentoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;

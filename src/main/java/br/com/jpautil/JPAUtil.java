@@ -15,7 +15,7 @@ public class JPAUtil implements Serializable {
 	private static final long serialVersionUID = 1L;
 		
 
-	private static EntityManagerFactory factory = null;
+	private EntityManagerFactory factory = null;
 	
 	public JPAUtil(){
 		if (factory == null) {

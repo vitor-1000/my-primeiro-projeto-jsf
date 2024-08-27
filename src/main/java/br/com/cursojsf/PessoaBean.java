@@ -17,8 +17,6 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.component.html.HtmlSelectManyMenu;
-import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
@@ -32,8 +30,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import javax.xml.bind.DatatypeConverter;
 
-import org.apache.el.lang.EvaluationContext;
-
 import com.google.gson.Gson;
 
 import br.com.dao.DaoGeneric;
@@ -42,6 +38,7 @@ import br.com.entidades.Estados;
 import br.com.entidades.Pessoa;
 import br.com.jpautil.JPAUtil;
 import br.com.repository.IDaoPessoa;
+import net.bootsfaces.component.selectOneMenu.SelectOneMenu;
 
 @javax.faces.view.ViewScoped
 @Named(value="pessoaBean")
@@ -71,6 +68,8 @@ public class PessoaBean implements Serializable {
 	private JPAUtil jpaUtil;
 
 	public String salvar() throws IOException{
+		
+		
 		//Processar imagem.
 		byte[] imagemByte = null;
 		
@@ -148,6 +147,11 @@ public class PessoaBean implements Serializable {
 		mostrarMsg("Removido com sucesso!");
 		return "";
 	}
+	
+	public void limpar() {
+	    this.pessoa = new Pessoa(); 
+	    return;
+	}
 
 	@PostConstruct
 	public void carregarPessoas() {
@@ -209,7 +213,7 @@ public class PessoaBean implements Serializable {
 		return pessoas;
 	}
 	
-	public String deslogar() {
+	public String desLogar() {
 		
 		FacesContext context = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = context.getExternalContext();
@@ -237,6 +241,8 @@ public class PessoaBean implements Serializable {
 			externalContext.getSessionMap().put("usuarioLogado", pessoaUser);
 
 			return "primeirapagina.jsf";
+		}else {
+			FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage("Usuário não encontrado!"));
 		}
 
 		return "index.jsf";
@@ -266,9 +272,10 @@ public class PessoaBean implements Serializable {
 		return estados;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void carregaCidades(AjaxBehaviorEvent event) {
 		
-		 Estados estado = (Estados) ((HtmlSelectOneMenu) event.getSource()).getValue();  		
+		 Estados estado = (Estados) ((SelectOneMenu) event.getSource()).getValue();  		
 		  				  			
 		  			if(estado != null) {
 		  				pessoa.setEstados(estado);
@@ -289,7 +296,8 @@ public class PessoaBean implements Serializable {
 		  			
 		  		}	  	
   	  			
-	public void editar () {
+	@SuppressWarnings("unchecked")
+	public String editar () {
 		if(pessoa.getCidades() != null) {
 			Estados estado = pessoa.getCidades().getEstados();
 			pessoa.setEstados(estado);
@@ -307,6 +315,7 @@ public class PessoaBean implements Serializable {
 			setCidades(selectItemsCidade);
 			
 		}
+		return"";
 	}
 	
 	
