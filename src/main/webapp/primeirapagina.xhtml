@@ -21,10 +21,12 @@
 	
 		<b:messages />
 					
-		<h:panelGrid columns="4">
+		<h:panelGrid columns="2">
 		<f:facet name="header">
 			<h:outputText value="Cadastro de usuário"/>
 		</f:facet>
+		
+		<b:panel>
 		
 		<b:column>
 		   <h:outputLabel value="Id:"/>
@@ -53,6 +55,10 @@
 		   </b:inputText>
 		</b:column>
 		
+		</b:panel>
+		
+		<b:panel>
+		
 		<b:column>					
 		   <h:outputLabel value="Idade:"/>
 		   <b:inputText value="#{pessoaBean.pessoa.idade}" pt:placeholder="Idade do usuário"/>
@@ -76,6 +82,10 @@
 			   <f:selectItem itemValue="FEMININO" itemLabel="Feminino"/>
 		   </b:selectOneMenu>
 		</b:column>
+		
+		</b:panel>
+		
+		<b:panel>
 		
 		<b:column>
 		   <h:outputLabel value="Nascimento:"/>
@@ -106,6 +116,10 @@
 		   <b:inputText value="#{pessoaBean.pessoa.login}" pt:placeholder="Nome usuário"/>
 		</b:column>
 		
+		</b:panel>
+		
+		<b:panel>
+		
 		<b:column>
 		   <h:outputLabel value="Senha:"/>
 		   <b:inputSecret value="#{pessoaBean.pessoa.senha}" pt:placeholder="senha"/>
@@ -120,7 +134,7 @@
 			     <f:selectItem itemValue="SECRETARIO" itemLabel="Secretário"/>
 			     <f:selectItem itemValue="RECEPSIONISTA" itemLabel="Resepcionista"/>
 		    </b:selectOneMenu>
-		</b:column>
+		</b:column>	
 		
 		<b:column>
 		   <h:outputLabel value="Programador:"/>
@@ -131,6 +145,10 @@
 			   <f:selectItem itemValue="E" itemLabel="Expecialista"/>
 		    </h:selectOneRadio>
 		</b:column>
+		
+		</b:panel>
+		
+		<b:panel>
 		
 		<b:column>
 		   <h:outputLabel value="Linguagens:"/>
@@ -173,6 +191,10 @@
 		    </b:inputText>
 		</b:column>
 		
+		</b:panel>
+		
+		<b:panel>
+		
 		<b:column>
 		   <h:outputLabel value="Logradouro:"/>
 		   <b:inputText value="#{pessoaBean.pessoa.logradouro}" id="logradouro" pt:placeholder="Rua ou Avenida"/>
@@ -193,6 +215,10 @@
 		   <b:inputText value="#{pessoaBean.pessoa.localidade}" id="localidade"  pt:placeholder="Cidade"/>
 		</b:column>
 		
+		</b:panel>
+		
+		<b:panel>
+		
 		<b:column>
 		   <h:outputLabel value="UF:"/>
 		   <b:inputText value="#{pessoaBean.pessoa.uf}" id="uf"  pt:placeholder="Estado"/>
@@ -212,6 +238,9 @@
 		<h:outputLabel value="GIA:"/>
 		<b:inputText value="#{pessoaBean.pessoa.gia}" id="gia"/>
 		</b:column>
+		
+		</b:panel>
+				
 						
 		  <h:outputLabel/>
 	    <h:panelGroup>
@@ -222,6 +251,10 @@
 	    </h:panelGroup>
 	    
 	    </h:panelGrid> 	
+		
+		<br/>
+		<br/>
+		<br/>
 		
 		</h:form>
 		

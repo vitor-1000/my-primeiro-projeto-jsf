@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -43,6 +44,8 @@ public class LancamentoBean implements Serializable {
 		
 		carregarLancamentos();
 		
+		FacesContext.getCurrentInstance().addMessage("Msg", new FacesMessage("Salvo com sucesso."));
+		
 		return "";
 	}
 	
@@ -51,18 +54,19 @@ public class LancamentoBean implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = context.getExternalContext();
 		Pessoa pessoaUser = (Pessoa) externalContext.getSessionMap().get("usuarioLogado");
-		lancamentos = daoLancamento.consultar(pessoaUser.getId());
+		lancamentos = daoLancamento.consultarLimit10(pessoaUser.getId());
 	}
 
-	public String novo(){
-		lancamento = new Lancamento();
-		return "";
+	public String novo() {
+	    lancamento = new Lancamento(); // Cria uma nova instância de Lancamento
+	    return ""; // Retorna uma string vazia para evitar redirecionamento
 	}
 	
 	public String remover(){
 		daoGeneric.deletePorId(lancamento);
 		lancamento = new Lancamento();
 		carregarLancamentos();
+		FacesContext.getCurrentInstance().addMessage("Msg", new FacesMessage("Excluído com sucesso."));
 		return "";
 				
 	}
