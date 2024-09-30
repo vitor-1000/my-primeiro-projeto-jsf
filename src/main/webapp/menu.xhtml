@@ -8,14 +8,13 @@
     
     <b:navBar brand="Menu" fluid="true">
     	 <b:navbarLinks>	 
-      	 	<b:navCommandLink action="primeirapagina" value="Administração" rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}"/>     	 
-      	 	<b:navCommandLink action="lancamento" value="Lançamentos"/>
-      	 	
-      	 	<b:dropMenu value="Relatórios">
-      	 		<b:navCommandLink value="Rel. Notas"/>
-      	 		<b:navCommandLink value="Rel. Usuário"/>
-      	 	</b:dropMenu>
-      	 	<b:navCommandLink value="trocar o UsuArio" action="#{pessoaBean.desLogar}"/>
+      	 	<b:navCommandLink action="primeirapagina" value="Administração" rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}"/>
+			<b:navCommandLink action="lancamento" value="Lançamentos"/>
+			<b:dropMenu value="Relatórios">
+    		<b:navCommandLink value="Rel. Notas" action="rellancamento"/>
+    		<b:navCommandLink value="Rel. Usuário"/>
+			</b:dropMenu>
+	<b:navCommandLink value="trocar o UsuArio" action="#{pessoaBean.desLogar}"/>
       	 </b:navbarLinks>     	 
     </b:navBar>
  
