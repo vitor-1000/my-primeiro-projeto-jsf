@@ -1,6 +1,7 @@
 package br.com.repository;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -64,7 +65,39 @@ import br.com.entidades.Lancamento;
     	
     	if (dataIni == null && dataFim == null && numNota != null && !numNota.isEmpty()) {
     		sql.append(" where l.numeroNotaFiscal = '").append(numNota.trim()).append("'");
+    		
+    	}else if(numNota == null || (numNota != null && numNota.isEmpty())
+    			&& dataIni != null && dataFim == null) {
+    		
+    		String dataIniString = new SimpleDateFormat("yyyy-MM-dd").format(dataIni);
+    		sql.append(" where l.dataIni >= '").append(dataIniString).append("'");
     	}
+    	else if(numNota == null || (numNota != null && numNota.isEmpty())
+    			&& dataIni == null && dataFim != null) {
+    		
+    		String datafimString = new SimpleDateFormat("yyyy-MM-dd").format(dataFim);
+    		sql.append(" where l.dataFin <= '").append(datafimString).append("'");
+    		
+    	}else if(numNota == null || (numNota != null &&  numNota.isEmpty())
+    			&& dataIni != null && dataFim != null) {
+    		
+    		String dataIniString = new SimpleDateFormat("yyyy-MM-dd").format(dataIni);
+    		String datafimString = new SimpleDateFormat("yyyy-MM-dd").format(dataFim);
+    		
+    		sql.append(" where l.dataIni >= '").append(dataIniString).append("' ");
+    		sql.append(" and l.dataFin <= '").append(datafimString).append("' ");
+    	}
+    	else if(numNota != null &&  !numNota.isEmpty()
+    			&& dataIni != null && dataFim != null) {
+    		
+    		String dataIniString = new SimpleDateFormat("yyyy-MM-dd").format(dataIni);
+    		String datafimString = new SimpleDateFormat("yyyy-MM-dd").format(dataFim);
+    		
+    		sql.append(" where l.dataIni >= '").append(dataIniString).append("' ");
+    		sql.append(" and l.dataFin <= '").append(datafimString).append("' ");
+    		sql.append(" and l.numeroNotaFiscal = '").append(numNota.trim()).append("'");
+    	}
+    	
 		
     	EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();

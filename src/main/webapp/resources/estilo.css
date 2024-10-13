@@ -1,0 +1,32 @@
+.panel-default, .b-panel, .b-form, .panel-body {						 
+    border: none !important; /* Remove bordas dos painéis */
+    box-shadow: none !important; /* Remove sombras dos contêineres */
+}
+           
+ input[type="text"], input[type="password"], input[type="number"], select, textarea {	
+    padding: 2px; /* Reduz o espaçamento interno */
+    line-height: 1.428571429; /* Mantém a altura da linha */
+    border: 1px solid #090707; /* Mantém a borda que você já configurou */
+    vertical-align: middle; /* Alinha verticalmente */
+    border-radius: 4px; /* Mantém os cantos arredondados */
+    
+    /* Ajuste de tamanho */
+    width: 80%; /* Define a largura dos campos (pode ajustar o valor) */
+    height: 28px; /* Define a altura dos campos */
+}
+    
+  
+      
+      
+      
+      
+
+
+
+
+
+
+
+
+
+

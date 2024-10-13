@@ -10,7 +10,10 @@
      
 
 <h:head>
-	<title>Cadastro de usuário</title>	
+	<title>Cadastro de usuário</title>		
+	
+	<link href="resources/estilo.css" rel="stylesheet"></link>
+	
 </h:head>
 
 <h:body>
@@ -279,7 +282,7 @@
 			<h:column>
 				<f:facet name="header">Foto</f:facet>
 				 <h:commandLink actionListener="#{pessoaBean.download}">
-				  <h:graphicImage width="60" height="60" value="#{pessoa.fotoIconBase64}"/>
+				  <h:graphicImage width="25" height="25" value="#{pessoa.fotoIconBase64}"/>
 				  <f:param name="fileDownloadId" value="#{pessoa.id}"/>
 				 </h:commandLink>
 			</h:column>
@@ -297,7 +300,7 @@
 			<h:column>
 				<f:facet name="header">Editar</f:facet>
 				<h:commandLink  title="Editar" immediate="true" action="#{pessoaBean.editar}">
-				<h:graphicImage value="/resources/img/editar.png"/>
+				<h:graphicImage value="/resources/img/editar.png" width="20px"/>
 					<f:setPropertyActionListener target="#{pessoaBean.pessoa}"
 					value="#{pessoa}" />			
 				</h:commandLink>
@@ -308,7 +311,7 @@
 				<h:commandLink  action="#{pessoaBean.remove}" title="Excluir" immediate="true">
 					<f:setPropertyActionListener target="#{pessoaBean.pessoa}" 
 					value="#{pessoa}" />
-					<h:graphicImage value="/resources/img/excluir.png"/>
+					<h:graphicImage value="/resources/img/excluir.png" width="20px"/>
 				</h:commandLink>				
 			</h:column>			
 			
