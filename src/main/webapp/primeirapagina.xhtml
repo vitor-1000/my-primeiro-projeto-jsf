@@ -64,17 +64,17 @@
 		
 		<b:column>					
 		   <h:outputLabel value="Idade:"/>
-		   <b:inputText value="#{pessoaBean.pessoa.idade}" pt:placeholder="Idade do usuário"/>
+		   <b:inputText value="#{pessoaBean.pessoa.idade}" pt:placeholder="Idade do usuário" mask="numeric"/>
 		</b:column>
 		
 		<b:column>
 		   <h:outputLabel value="CPF:"/>
-		   <b:inputText value="#{pessoaBean.pessoa.cpf}" pt:placeholder="CPF válido"/>
+		   <b:inputText value="#{pessoaBean.pessoa.cpf}" pt:placeholder="CPF válido" mask="999.999.999-99"/>
 		</b:column>
 		
 		<b:column>
 		   <h:outputLabel value="Titulo Eleit:"/>
-		   <b:inputText value="#{pessoaBean.pessoa.titEleitoral}" pt:placeholder="Título de eleitor válido"/>
+		   <b:inputText value="#{pessoaBean.pessoa.titEleitoral}" pt:placeholder="Título de eleitor válido" mask="numeric"/>
 		</b:column>
 		
 		<b:column>
@@ -187,8 +187,8 @@
 		</b:column>
 		
 		<b:column>
-		   <h:outputLabel value="CEP:"/>
-		   <b:inputText value="#{pessoaBean.pessoa.cep}" pt:placeholder="Imforme um CEP válido">
+		   <h:outputLabel value="CEP:"/> 
+		   <b:inputText value="#{pessoaBean.pessoa.cep}" pt:placeholder="Imforme um CEP válido" mask="99999-999">
 			   <f:ajax event="blur" execute="@form" 
 			   listener="#{pessoaBean.pesquisaCep}"
 			   render="@form"/>
@@ -254,11 +254,7 @@
             <h:commandButton style="margin-left:1cm;" value="Limpar" action="#{pessoaBean.limpar}" image="/resources/img/Limpar.png" title="Limpar" update="@form"/>
 	    </h:panelGroup>
 	    
-	    </h:panelGrid> 	
-		
-		<br/>
-		<br/>
-		<br/>
+	    </h:panelGrid> 				
 		
 		</h:form>
 		
@@ -322,3 +318,7 @@
 </h:body>
 
 </html>
+
+
+
+

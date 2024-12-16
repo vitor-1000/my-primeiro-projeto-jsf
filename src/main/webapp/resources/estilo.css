@@ -1,3 +1,5 @@
+@charset "ISO-8859-1";
+
 .panel-default, .b-panel, .b-form, .panel-body {						 
     border: none !important; /* Remove bordas dos painéis */
     box-shadow: none !important; /* Remove sombras dos contêineres */
@@ -14,19 +16,43 @@
     width: 80%; /* Define a largura dos campos (pode ajustar o valor) */
     height: 28px; /* Define a altura dos campos */
 }
-    
-  
-      
-      
-      
-      
 
+                  
+                    /* Mantém os ajustes de borda e padding dos campos */
+input[type="text"], 
+input[type="password"], 
+input[type="number"], 
+select, 
+textarea {	
+    padding: 2px; /* Espaçamento interno menor */
+    line-height: 1.2; /* Reduz a altura da linha */
+    border: 1px solid #090707; 
+    vertical-align: middle; 
+    border-radius: 4px; 
+    width: 80%; 
+    height: 28px; 
+    margin-bottom: 4px !important; /* Reduz o espaço entre os campos */
+}
 
+/* Reduz ainda mais o espaçamento entre os campos */
+.form-group {
+    margin-bottom: 4px !important; /* Reduz a margem entre grupos de formulário */
+}
 
+/* Ajuste dos labels para ficarem mais próximos dos campos */
+label {
+    margin-bottom: 2px !important; /* Mantém os labels próximos */
+    font-weight: 500;
+}
 
+/* Remover qualquer padding extra no container do formulário */
+.panel-body, 
+.b-form {
+    padding: 5px !important; /* Ajuste fino do espaço interno */
+}
 
-
-
-
-
-
+/* Ajuste de espaçamento entre botões e campos */
+button {
+    margin-top: 8px !important; /* Botões ligeiramente afastados */
+}
+                    
